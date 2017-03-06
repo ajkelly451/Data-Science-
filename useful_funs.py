@@ -19,3 +19,33 @@ def convert_base(x, new_base):
             res = res - mult*(new_base**i) # Recompute the residual
             soln = soln + str(mult) # Add digits together as strings
         return int(soln) # Return converted back to integer
+
+def median(x):
+    ''' This function takes a list of numerical values
+    and returns its median. For large lists too large to
+    be stored in memory, the binned estimation below may
+    work. '''
+    l = len(x) # get length so it doesn't have to be repeatedly returned
+    # Create hash table
+    h = {}
+    for i in x:
+        if i not in h.keys():
+            h[i] = 1 # Initialize counts for this int
+        else:
+            h[i] = h[i] + 1 # Add one for ints already in table
+    # This part iterates through to find which integer is in the middle
+    count = 0
+    for j in sorted(h.keys()): # Sorting the keys is essential here.
+        if count >= l//2:
+            if count == l/2:
+                med = (med + j)/2 # Calculates between indices if we have even-sized list.
+                break
+            else:
+                break
+        count = count + h[j]
+        med = j
+    return med
+
+def median_binned(x, bins, method='medians'):
+    ''' This function is a wrapper around
+    the above function. It takes in 
