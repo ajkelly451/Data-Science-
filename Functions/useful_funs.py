@@ -46,6 +46,54 @@ def median(x):
         med = j
     return med
 
-def median_binned(x, bins, method='medians'):
+def median_binned(x, bins=100, method='center'):
     ''' This function is a wrapper around
-    the above function. It takes in 
+    the above function. It takes in your list,
+    computes a list where the values were replaced
+    using preferred rule, then runs the median
+    function. '''
+    import numpy as np
+    mn, mx = min(x), max(x)
+    rg = np.arange(mn, mx, (mx - mn)/bins).tolist()
+
+
+def max_profit(x):
+    ''' Function that takes a list of stock prices, i.e.
+    [1, 4, 3, 7, 5, 3, 2] and outputs the maximum profit
+    that could have been made if buying and selling time
+    were optimal.'''
+    mp = 0
+    min_val = x[0]
+    for i in x:
+        if i < min_val:
+            min_val = i
+        else:
+            mp = max(mp, i-min_val)
+    return mp
+
+def reverse_words(x):
+    ''' Given a sentence, return a sentence with the words reversed.'''
+    sent = x
+    wds = []
+    # Iterate through to get words out
+    while sent:
+        word = ''
+        for i, val in enumerate(sent):
+            if val != ' ':
+                word+=val
+                if len(sent) == len(word):
+                    sent=''
+                    wds.append(word)
+            else:
+                sent=sent[i+1:]
+                wds.append(word)
+                break
+    # Reverse and reappend words
+    wds=wds[::-1]
+    sent_rev = ''
+    for i, val in enumerate(wds):
+        if i < (len(wds)-1):
+            sent_rev+=(val+' ')
+        else:
+            sent_rev+=val
+    return sent_rev
