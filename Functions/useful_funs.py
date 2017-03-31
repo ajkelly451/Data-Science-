@@ -97,3 +97,24 @@ def reverse_words(x):
         else:
             sent_rev+=val
     return sent_rev
+
+from math import factorial as fact
+def choose(n, k):
+    ''' Implements n choose k'''
+    ret = 0
+    if n == k:
+        ret = 1
+    elif k == 1:
+        ret = n
+    else:
+        a = fact(n)
+        b = fact(k)
+        c = fact(n - k)
+        ret = a // (b * c)
+    return ret
+
+def pascal_lev(l):
+    ret = []
+    for i in range(l+1):
+        ret.append(choose(l, i))
+    return ret
