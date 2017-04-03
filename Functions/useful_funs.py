@@ -115,6 +115,6 @@ def choose(n, k):
 
 def pascal_lev(l):
     ret = []
-    for i in range(l+1):
+    for i in xrange(l+1):
         ret.append(choose(l, i))
     return ret
